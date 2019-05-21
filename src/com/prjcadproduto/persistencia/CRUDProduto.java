@@ -108,7 +108,7 @@ public class CRUDProduto {
 																														// conexao
 																														// remota
 
-			String consulta = "UPDATE tbproduto SET nomeproduto=?,descricaoproduto=?,=?,fabricante=?,quantidade=?,preco=? WHERE id=?"; // pegar
+			String consulta = "UPDATE tbproduto SET nomeproduto=?,descricaoproduto=?,fabricante=?,quantidade=?,preco=? WHERE id=?"; // pegar
 																																		// da
 																																		// tabela
 																																		// as
@@ -172,7 +172,7 @@ public class CRUDProduto {
 																														// conexao
 																														// remota
 
-			String consulta = "DELETE FROM tbcliente WHERE id=?"; // pegar da tabela as coisas e trazer o resultado
+			String consulta = "DELETE FROM tbproduto WHERE id=?"; // pegar da tabela as coisas e trazer o resultado
 
 			pst = con.prepareStatement(consulta);
 
@@ -269,7 +269,7 @@ public class CRUDProduto {
 			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/produtodb?serverTimezone=UTC", "root", "");
 
 			// Vamos criar a consulta para selecionar os produtos por nome
-			String consulta = "select * from tbcliente where id=?";
+			String consulta = "select * from tbproduto where id=?";
 
 			pst = con.prepareStatement(consulta);
 
@@ -283,12 +283,12 @@ public class CRUDProduto {
 			 * produto para, então retorná-la
 			 */
 			if (rs.next()) {
-				produto.setId(rs.getInt(0));
-				produto.setNomeproduto(rs.getString(1));
-				produto.setDescricaoproduto(rs.getString(2));
-				produto.setFabricante(rs.getString(3));
-				produto.setQuantidade(rs.getInt(4));
-				produto.setPreco(rs.getDouble(5));
+				produto.setId(rs.getInt(1));
+				produto.setNomeproduto(rs.getString(2));
+				produto.setDescricaoproduto(rs.getString(3));
+				produto.setFabricante(rs.getString(4));
+				produto.setQuantidade(rs.getInt(5));
+				produto.setPreco(rs.getDouble(6));
 			}
 
 		} // fim do try
@@ -332,12 +332,12 @@ public List<Produto> PesquisarTodos() {
 			 */
 			while(rs.next()) {
 				lista.add(new Produto(
-						rs.getInt(0),
-						rs.getString(1),
+						rs.getInt(1),
 						rs.getString(2),
 						rs.getString(3),
-						rs.getInt(4),
-						rs.getDouble(5)
+						rs.getString(4),
+						rs.getInt(5),
+						rs.getDouble(6)
 						));
 				
 			}//Fim do while
